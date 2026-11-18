@@ -30,6 +30,20 @@ Or execute `week13_pipeline.ipynb` and export HTML with `jupyter nbconvert --to 
 
 The script keeps shuffle partitions at 16, which is enough for a laptop and avoids the default 200 tiny tasks. It does not repartition the trip table. The only partition column is `pickup_borough` on the small summary that gets written.
 
+## Same ideas as the class session
+
+The [Databricks session](https://androidilicious.github.io/databricks-pyspark-session/) walks through lazy plans, `explain()`, columnar files, broadcast joins, and a window plus SQL that return the same rows. This notebook uses those same steps on the TLC data:
+
+| Session step | Where it shows up here |
+|---|---|
+| Lazy plan, then an action | Section 3 prints the DataFrame before any job. Section 5 times the first `collect()`. |
+| `explain()`, `ReadSchema`, filters pushed into the scan | Section 4. Local Spark prints `DataFilters` and `PushedFilters`. Photon on Databricks prints `DataFilters` for the same thing. |
+| Broadcast a small lookup | Both zone joins use `F.broadcast`. The plan says `BroadcastHashJoin`. |
+| Window, then the same answer in SQL | Section 7 ranks the busiest hour inside each borough both ways. |
+| Write a columnar table | Section 8 writes Parquet, partitioned by borough. Parquet is what makes the filter pushdown possible, which is the point of the session's Delta step. |
+
+The session runs on Databricks serverless, where `spark` already exists. This repo runs the same API locally because the write-up needs a Spark UI capture and a GitHub repo. `scripts/download_data.sh` is the stand-in for the built-in `/databricks-datasets` path.
+
 ## What the pipeline does
 
 1. Read the three Parquet files and the zone CSV.
@@ -44,15 +58,15 @@ The script keeps shuffle partitions at 16, which is enough for a laptop and avoi
 
 Catalyst did the three optimizations the pipeline was written to get. The formatted plan in `docs/explain_plan.txt`, and the SQL details page for query 3, show a Parquet scan whose `PushedFilters` list includes the mile, duration, fare, tip, driver-pay, location, and Q1 timestamp predicates. Those predicates are on stored columns, so Spark can skip Parquet row groups instead of decoding every record and filtering afterward. The same scan's `ReadSchema` is nine fields, not the 24 columns stored in the files. Both zone joins are `BroadcastHashJoin` with a `BroadcastExchange`. The zone table is 265 rows, and broadcasting it means the 57 million trips are not shuffled just to attach a borough name. Adaptive query execution then does the hash aggregate.
 
-The lineage itself is lazy. Building every filter, projection, join, and both SQL queries took **0.43 seconds** and launched no job. The first action, the borough SQL, took **9.3 seconds**. Query 3 in the Spark UI is that action: status completed, duration 9 seconds, and the scan node shows about 56.8 million rows going into a filter, two broadcast hash joins, and a hash aggregate. The airport SQL is a different aggregation on the same lineage and took **5.2 seconds**, so Spark recomputed the plan rather than reusing the first result. It was faster than the first pass because the operating system already had the Parquet pages cached. That speedup is the file cache, not a Spark `.cache()`.
+The lineage itself is lazy. Building every filter, projection, join, and both SQL queries took **0.41 seconds** and launched no job. Printing the DataFrame at that point shows only its schema, the same check as the session's "Nothing has run yet." The first action, the borough SQL, took **9.7 seconds**. The scan in that plan reads about 56.8 million rows, then filters, broadcast-joins, and aggregates. The airport SQL is a different aggregation on the same lineage and took **6.4 seconds**, so Spark ran the plan again. It was faster than a cold read because the operating system already had the Parquet pages cached. That speedup is the file cache, not a Spark `.cache()`. The saved SQL screenshot is an earlier pass of this same plan: query 3 completed in 9 seconds with the scan, filter, and both broadcast joins on the details page.
 
-`.persist(MEMORY_AND_DISK)` is also lazy. The action that materializes it is the `count()` of the cleaned trips. Query 7 took **32 seconds**, and its final plan is an `InMemoryRelation` / `InMemoryTableScan` holding **5.3 GiB and 56.8 million rows**. That is the bottleneck. The compressed input is 1.36 GiB, and the cached table is about four times larger, so a later pass over the cache costs about as much as reading Parquet again. The `show` and write queries after the count ran in roughly 4 to 8 seconds. The two repeats of the identical SQL, query 5 at 0.1 seconds and query 6 at 53 milliseconds, return a few dozen aggregate rows. They are not a second pass over 57 million trips. On this laptop, the optimizations that removed work on every scan were the early filters, the narrow column list, and the broadcast joins. Caching every cleaned trip made the working set bigger.
+`.persist(MEMORY_AND_DISK)` is also lazy. The action that stores the trips is `count()`, which took **39 seconds**. On the earlier UI capture that same step was query 7, and its plan was an `InMemoryRelation` holding **5.3 GiB and 56.8 million rows**. That is the bottleneck. The compressed input is 1.36 GiB, and the cached table is about four times larger, so a later pass over the cache costs about as much as reading Parquet again. Repeating the borough and airport SQL took **0.03 and 0.04 seconds** because those queries return a few rows, not because every trip was read again. On this laptop, the optimizations that removed work on every scan were the early filters, the narrow column list, and the broadcast joins. Caching every cleaned trip made the working set bigger.
 
 ## Key findings
 
 The cleaned data has **56,799,186** trips.
 
-Manhattan is the origin for 23.4 million of them (41 percent), then Brooklyn (14.7 million), Queens (11.1 million), the Bronx (6.8 million), and Staten Island (0.77 million). Another 2,920 trips have borough `N/A`, and only 3 pickups are coded to Newark, so that Newark fare-per-mile average is not a real pattern. The busiest hour is **6 p.m.**, with 3.5 million pickups across the quarter.
+Manhattan is the origin for 23.4 million of them (41 percent), then Brooklyn (14.7 million), Queens (11.1 million), the Bronx (6.8 million), and Staten Island (0.77 million). Another 2,920 trips have borough `N/A`, and only 3 pickups are coded to Newark, so that Newark fare-per-mile average is not a real pattern. The busiest hour across the city is **6 p.m.**, with 3.5 million pickups across the quarter. A window rank inside each borough, matched by the same SQL, puts Manhattan's busiest hour at 7 p.m. (1.57 million trips), Brooklyn and Queens at 6 p.m., and the Bronx and Staten Island at 8 a.m.
 
 Most trips stay in the pickup borough: 72 percent in Manhattan, 76 percent in Brooklyn, and 86 percent on Staten Island. Queens is the most likely to leave the borough (64 percent stay), which fits a borough that contains both JFK and LaGuardia.
 

@@ -2,11 +2,12 @@
   "input_bytes": 1455197089,
   "input_gib": 1.355,
   "cleaned_rows": 56799186,
-  "transform_seconds": 0.433,
-  "uncached_borough_seconds": 9.31,
-  "uncached_airport_seconds": 5.22,
-  "cache_build_seconds": 0.11,
-  "cached_airport_seconds": 0.06,
+  "transform_seconds": 0.4104,
+  "uncached_borough_seconds": 9.71,
+  "uncached_airport_seconds": 6.41,
+  "repeat_borough_seconds": 0.03,
+  "repeat_airport_seconds": 0.04,
+  "count_seconds": 39.04,
   "borough_summary": [
     {
       "pickup_borough": "Manhattan",
@@ -156,6 +157,43 @@
       "pickup_zone": "Midtown South",
       "trips": 629737,
       "avg_fare_per_mile": 8.04
+    }
+  ],
+  "busiest_hour_by_borough": [
+    {
+      "pickup_borough": "Manhattan",
+      "pickup_hour": 19,
+      "trip_count": 1567322
+    },
+    {
+      "pickup_borough": "Brooklyn",
+      "pickup_hour": 18,
+      "trip_count": 893714
+    },
+    {
+      "pickup_borough": "Queens",
+      "pickup_hour": 18,
+      "trip_count": 624603
+    },
+    {
+      "pickup_borough": "Bronx",
+      "pickup_hour": 8,
+      "trip_count": 451439
+    },
+    {
+      "pickup_borough": "Staten Island",
+      "pickup_hour": 8,
+      "trip_count": 51997
+    },
+    {
+      "pickup_borough": "N/A",
+      "pickup_hour": 16,
+      "trip_count": 204
+    },
+    {
+      "pickup_borough": "EWR",
+      "pickup_hour": 5,
+      "trip_count": 1
     }
   ]
 }

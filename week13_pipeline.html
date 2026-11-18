@@ -7511,7 +7511,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=419cda7d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e4ccbcd0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7525,7 +7525,7 @@ downloaded with <code>scripts/download_data.sh</code> and are not stored in git.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=de0bd779">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=daa53e38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7541,12 +7541,13 @@ downloaded with <code>scripts/download_data.sh</code> and are not stored in git.
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyspark</span><span class="w"> </span><span class="kn">import</span> <span class="n">StorageLevel</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">F</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.window</span><span class="w"> </span><span class="kn">import</span> <span class="n">Window</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=dee57036">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d43994a9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7583,7 +7584,7 @@ downloaded with <code>scripts/download_data.sh</code> and are not stored in git.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5707d750">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33280210">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7597,7 +7598,7 @@ every trip.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74057f58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=425be265">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7644,14 +7645,8 @@ every trip.</p>
 <pre>Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>26/11/18 15:29:24 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-26/11/18 15:29:24 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in standalone/kubernetes and LOCAL_DIRS in YARN).
+26/11/18 15:42:29 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/11/18 15:42:29 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in standalone/kubernetes and LOCAL_DIRS in YARN).
 </pre>
 </div>
 </div>
@@ -7665,7 +7660,7 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21587e66">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27984437">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7677,7 +7672,7 @@ and exists only to attach borough and zone names.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6450bb75">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bed82009">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7778,20 +7773,21 @@ root
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c617b4a4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58316fed">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3.-Transformations-are-lazy">3. Transformations are lazy<a class="anchor-link" href="#3.-Transformations-are-lazy">¶</a></h2><p>The cell below only records a plan: two filters, a narrow projection,
-derived columns, two broadcast joins, and a groupBy. None of that reads the
-trip files. The clock should stay near zero, and no job is launched until a
-later action.</p>
+<h2 id="3.-Transformations-are-lazy">3. Transformations are lazy<a class="anchor-link" href="#3.-Transformations-are-lazy">¶</a></h2><p>Goal: see that Spark plans before it runs.</p>
+<p><code>filter</code>, <code>select</code>, <code>withColumn</code>, <code>join</code>, and <code>groupBy</code> only build a plan.
+<code>show</code>, <code>count</code>, and <code>write</code> run it. Because Spark sees the whole plan first,
+it can push filters into the Parquet files and read only the columns this
+query uses. The cell below should finish immediately.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=992ec5c5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55ca8a3f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7940,10 +7936,8 @@ later action.</p>
 <span class="p">)</span>
 
 <span class="n">transform_seconds</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">"Transformations built in </span><span class="si">{</span><span class="n">transform_seconds</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s. "</span>
-    <span class="s2">"No action has run, so Spark has not scanned the trip files."</span>
-<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Transformations built in </span><span class="si">{</span><span class="n">transform_seconds</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Nothing has run yet:"</span><span class="p">,</span> <span class="n">borough_hour</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7956,26 +7950,30 @@ later action.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Transformations built in 0.4330s. No action has run, so Spark has not scanned the trip files.
+<pre>Transformations built in 0.4104s.
+Nothing has run yet: DataFrame[pickup_borough: string, pickup_hour: int, trip_count: bigint, avg_miles: double, avg_fare_per_mile: double, avg_tip_rate: double, shared_trip_rate: double, total_driver_pay: double]
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b11fb367">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=245e8aca">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="4.-Physical-plan">4. Physical plan<a class="anchor-link" href="#4.-Physical-plan">¶</a></h2><p><code>explain</code> asks the optimizer for the plan it will run. It does not compute the
-aggregations. The formatted plan should show pushed Parquet filters and
-<code>BroadcastHashJoin</code> for both zone lookups.</p>
+<h2 id="4.-Physical-plan">4. Physical plan<a class="anchor-link" href="#4.-Physical-plan">¶</a></h2><p>Goal: read the plan the way the Databricks session does.</p>
+<p><code>explain()</code> does not compute the aggregation. In the scan, <code>ReadSchema</code> should
+be the few columns we kept, and <code>PushedFilters</code> should list the mile, time,
+fare, and date predicates. Both zone lookups should be a <code>BroadcastHashJoin</code>,
+not a shuffle of the trips. The session's Photon engine prints <code>DataFilters</code>
+and <code>PhotonBroadcastHashJoin</code> for the same two ideas.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=188725e6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63309e98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7992,20 +7990,18 @@ aggregations. The formatted plan should show pushed Parquet filters and
         <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">_jdf</span><span class="o">.</span><span class="n">queryExecution</span><span class="p">()</span><span class="o">.</span><span class="n">explainString</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
 
 
-<span class="n">plan_sections</span> <span class="o">=</span> <span class="p">[</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Borough-hour plan:"</span><span class="p">)</span>
+<span class="n">borough_hour</span><span class="o">.</span><span class="n">explain</span><span class="p">()</span>
+
+<span class="n">plan_text</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="p">(</span>
     <span class="p">(</span><span class="s2">"Borough-hour aggregation"</span><span class="p">,</span> <span class="n">borough_hour</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">"SQL: airport trips by hour"</span><span class="p">,</span> <span class="n">sql_airport</span><span class="p">),</span>
-<span class="p">]</span>
-<span class="n">plan_text</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">plan_sections</span><span class="p">:</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">explain_formatted</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">===== </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> =====</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">plan_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"===== </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> =====</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-
+<span class="p">):</span>
+    <span class="n">plan_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"===== </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> =====</span><span class="se">\n</span><span class="si">{</span><span class="n">explain_formatted</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plan_path</span> <span class="o">=</span> <span class="n">DOCS</span> <span class="o">/</span> <span class="s2">"explain_plan.txt"</span>
 <span class="n">plan_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">plan_text</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Wrote"</span><span class="p">,</span> <span class="n">plan_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Wrote the formatted plan to"</span><span class="p">,</span> <span class="n">plan_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8018,135 +8014,29 @@ aggregations. The formatted plan should show pushed Parquet filters and
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-===== Borough-hour aggregation =====
-
+<pre>Borough-hour plan:
 == Physical Plan ==
-AdaptiveSparkPlan (21)
-+- Sort (20)
-   +- Exchange (19)
-      +- HashAggregate (18)
-         +- Exchange (17)
-            +- HashAggregate (16)
-               +- Project (15)
-                  +- BroadcastHashJoin LeftOuter BuildRight (14)
-                     :- Project (9)
-                     :  +- BroadcastHashJoin LeftOuter BuildRight (8)
-                     :     :- Project (3)
-                     :     :  +- Filter (2)
-                     :     :     +- Scan parquet  (1)
-                     :     +- BroadcastExchange (7)
-                     :        +- Project (6)
-                     :           +- Filter (5)
-                     :              +- Scan csv  (4)
-                     +- BroadcastExchange (13)
-                        +- Project (12)
-                           +- Filter (11)
-                              +- Scan csv  (10)
-
-
-(1) Scan parquet 
-Output [9]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18, shared_match_flag#20]
-Batched: true
-Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/fhvhv_tripdata_2023-01.parquet, ... 2 entries]
-PushedFilters: [IsNotNull(trip_miles), IsNotNull(trip_time), IsNotNull(base_passenger_fare), IsNotNull(tips), IsNotNull(driver_pay), GreaterThan(trip_miles,0.0), GreaterThan(trip_time,0), GreaterThan(base_passenger_fare,0.0), GreaterThanOrEqual(tips,0.0), GreaterThanOrEqual(driver_pay,0.0), IsNotNull(PULocationID), IsNotNull(DOLocationID), IsNotNull(pickup_datetime), LessThan(trip_miles,200.0), LessThan(trip_time,21600), LessThan(base_passenger_fare,1000.0), GreaterThanOrEqual(pickup_datetime,2023-01-01T00:00), LessThan(pickup_datetime,2023-04-01T00:00)]
-ReadSchema: struct&lt;pickup_datetime:timestamp_ntz,PULocationID:bigint,DOLocationID:bigint,trip_miles:double,trip_time:bigint,base_passenger_fare:double,tips:double,driver_pay:double,shared_match_flag:string&gt;
-
-(2) Filter
-Input [9]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18, shared_match_flag#20]
-Condition : (((((((((((((((((isnotnull(trip_miles#9) AND isnotnull(trip_time#10L)) AND isnotnull(base_passenger_fare#11)) AND isnotnull(tips#17)) AND isnotnull(driver_pay#18)) AND (trip_miles#9 &gt; 0.0)) AND (trip_time#10L &gt; 0)) AND (base_passenger_fare#11 &gt; 0.0)) AND (tips#17 &gt;= 0.0)) AND (driver_pay#18 &gt;= 0.0)) AND isnotnull(PULocationID#7L)) AND isnotnull(DOLocationID#8L)) AND isnotnull(pickup_datetime#5)) AND (trip_miles#9 &lt; 200.0)) AND (trip_time#10L &lt; 21600)) AND (base_passenger_fare#11 &lt; 1000.0)) AND (pickup_datetime#5 &gt;= 2023-01-01 00:00:00)) AND (pickup_datetime#5 &lt; 2023-04-01 00:00:00))
-
-(3) Project
-Output [8]: [cast(PULocationID#7L as int) AS PULocationID#48, cast(DOLocationID#8L as int) AS DOLocationID#49, trip_miles#9, driver_pay#18, hour(pickup_datetime#5, Some(America/New_York)) AS pickup_hour#51, (base_passenger_fare#11 / trip_miles#9) AS fare_per_mile#53, (tips#17 / base_passenger_fare#11) AS tip_rate#54, CASE WHEN (upper(trim(shared_match_flag#20, None)) = Y) THEN 1.0 ELSE 0.0 END AS is_shared#55]
-Input [9]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18, shared_match_flag#20]
-
-(4) Scan csv 
-Output [2]: [LocationID#41, Borough#42]
-Batched: false
-Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone_lookup.csv]
-PushedFilters: [IsNotNull(LocationID)]
-ReadSchema: struct&lt;LocationID:int,Borough:string&gt;
-
-(5) Filter
-Input [2]: [LocationID#41, Borough#42]
-Condition : isnotnull(LocationID#41)
-
-(6) Project
-Output [2]: [LocationID#41 AS PULocationID#56, Borough#42 AS pickup_borough#57]
-Input [2]: [LocationID#41, Borough#42]
-
-(7) BroadcastExchange
-Input [2]: [PULocationID#56, pickup_borough#57]
-Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=73]
-
-(8) BroadcastHashJoin
-Left keys [1]: [PULocationID#48]
-Right keys [1]: [PULocationID#56]
-Join type: LeftOuter
-Join condition: None
-
-(9) Project
-Output [8]: [DOLocationID#49, trip_miles#9, driver_pay#18, pickup_hour#51, fare_per_mile#53, tip_rate#54, is_shared#55, pickup_borough#57]
-Input [10]: [PULocationID#48, DOLocationID#49, trip_miles#9, driver_pay#18, pickup_hour#51, fare_per_mile#53, tip_rate#54, is_shared#55, PULocationID#56, pickup_borough#57]
-
-(10) Scan csv 
-Output [1]: [LocationID#61]
-Batched: false
-Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone_lookup.csv]
-PushedFilters: [IsNotNull(LocationID)]
-ReadSchema: struct&lt;LocationID:int&gt;
-
-(11) Filter
-Input [1]: [LocationID#61]
-Condition : isnotnull(LocationID#61)
-
-(12) Project
-Output [1]: [LocationID#61 AS DOLocationID#59]
-Input [1]: [LocationID#61]
-
-(13) BroadcastExchange
-Input [1]: [DOLocationID#59]
-Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=77]
-
-(14) BroadcastHashJoin
-Left keys [1]: [DOLocationID#49]
-Right keys [1]: [DOLocationID#59]
-Join type: LeftOuter
-Join condition: None
-
-(15) Project
-Output [7]: [coalesce(pickup_borough#57, Unknown) AS pickup_borough#67, pickup_hour#51, trip_miles#9, fare_per_mile#53, tip_rate#54, is_shared#55, driver_pay#18]
-Input [9]: [DOLocationID#49, trip_miles#9, driver_pay#18, pickup_hour#51, fare_per_mile#53, tip_rate#54, is_shared#55, pickup_borough#57, DOLocationID#59]
-
-(16) HashAggregate
-Input [7]: [pickup_borough#67, pickup_hour#51, trip_miles#9, fare_per_mile#53, tip_rate#54, is_shared#55, driver_pay#18]
-Keys [2]: [pickup_borough#67, pickup_hour#51]
-Functions [6]: [partial_count(1), partial_avg(trip_miles#9), partial_avg(fare_per_mile#53), partial_avg(tip_rate#54), partial_avg(is_shared#55), partial_sum(driver_pay#18)]
-Aggregate Attributes [10]: [count#119L, sum#120, count#121L, sum#122, count#123L, sum#124, count#125L, sum#126, count#127L, sum#128]
-Results [12]: [pickup_borough#67, pickup_hour#51, count#129L, sum#130, count#131L, sum#132, count#133L, sum#134, count#135L, sum#136, count#137L, sum#138]
-
-(17) Exchange
-Input [12]: [pickup_borough#67, pickup_hour#51, count#129L, sum#130, count#131L, sum#132, count#133L, sum#134, count#135L, sum#136, count#137L, sum#138]
-Arguments: hashpartitioning(pickup_borough#67, pickup_hour#51, 16), ENSURE_REQUIREMENTS, [plan_id=82]
-
-(18) HashAggregate
-Input [12]: [pickup_borough#67, pickup_hour#51, count#129L, sum#130, count#131L, sum#132, count#133L, sum#134, count#135L, sum#136, count#137L, sum#138]
-Keys [2]: [pickup_borough#67, pickup_hour#51]
-Functions [6]: [count(1), avg(trip_miles#9), avg(fare_per_mile#53), avg(tip_rate#54), avg(is_shared#55), sum(driver_pay#18)]
-Aggregate Attributes [6]: [count(1)#89L, avg(trip_miles#9)#90, avg(fare_per_mile#53)#91, avg(tip_rate#54)#92, avg(is_shared#55)#93, sum(driver_pay#18)#94]
-Results [8]: [pickup_borough#67, pickup_hour#51, count(1)#89L AS trip_count#71L, avg(trip_miles#9)#90 AS avg_miles#72, avg(fare_per_mile#53)#91 AS avg_fare_per_mile#73, avg(tip_rate#54)#92 AS avg_tip_rate#74, avg(is_shared#55)#93 AS shared_trip_rate#75, sum(driver_pay#18)#94 AS total_driver_pay#76]
-
-(19) Exchange
-Input [8]: [pickup_borough#67, pickup_hour#51, trip_count#71L, avg_miles#72, avg_fare_per_mile#73, avg_tip_rate#74, shared_trip_rate#75, total_driver_pay#76]
-Arguments: rangepartitioning(pickup_borough#67 ASC NULLS FIRST, pickup_hour#51 ASC NULLS FIRST, 16), ENSURE_REQUIREMENTS, [plan_id=85]
-
-(20) Sort
-Input [8]: [pickup_borough#67, pickup_hour#51, trip_count#71L, avg_miles#72, avg_fare_per_mile#73, avg_tip_rate#74, shared_trip_rate#75, total_driver_pay#76]
-Arguments: [pickup_borough#67 ASC NULLS FIRST, pickup_hour#51 ASC NULLS FIRST], true, 0
-
-(21) AdaptiveSparkPlan
-Output [8]: [pickup_borough#67, pickup_hour#51, trip_count#71L, avg_miles#72, avg_fare_per_mile#73, avg_tip_rate#74, shared_trip_rate#75, total_driver_pay#76]
-Arguments: isFinalPlan=false
+AdaptiveSparkPlan isFinalPlan=false
++- Sort [pickup_borough#67 ASC NULLS FIRST, pickup_hour#51 ASC NULLS FIRST], true, 0
+   +- Exchange rangepartitioning(pickup_borough#67 ASC NULLS FIRST, pickup_hour#51 ASC NULLS FIRST, 16), ENSURE_REQUIREMENTS, [plan_id=85]
+      +- HashAggregate(keys=[pickup_borough#67, pickup_hour#51], functions=[count(1), avg(trip_miles#9), avg(fare_per_mile#53), avg(tip_rate#54), avg(is_shared#55), sum(driver_pay#18)])
+         +- Exchange hashpartitioning(pickup_borough#67, pickup_hour#51, 16), ENSURE_REQUIREMENTS, [plan_id=82]
+            +- HashAggregate(keys=[pickup_borough#67, pickup_hour#51], functions=[partial_count(1), partial_avg(trip_miles#9), partial_avg(fare_per_mile#53), partial_avg(tip_rate#54), partial_avg(is_shared#55), partial_sum(driver_pay#18)])
+               +- Project [coalesce(pickup_borough#57, Unknown) AS pickup_borough#67, pickup_hour#51, trip_miles#9, fare_per_mile#53, tip_rate#54, is_shared#55, driver_pay#18]
+                  +- BroadcastHashJoin [DOLocationID#49], [DOLocationID#59], LeftOuter, BuildRight, false, false
+                     :- Project [DOLocationID#49, trip_miles#9, driver_pay#18, pickup_hour#51, fare_per_mile#53, tip_rate#54, is_shared#55, pickup_borough#57]
+                     :  +- BroadcastHashJoin [PULocationID#48], [PULocationID#56], LeftOuter, BuildRight, false, false
+                     :     :- Project [cast(PULocationID#7L as int) AS PULocationID#48, cast(DOLocationID#8L as int) AS DOLocationID#49, trip_miles#9, driver_pay#18, hour(pickup_datetime#5, Some(America/New_York)) AS pickup_hour#51, (base_passenger_fare#11 / trip_miles#9) AS fare_per_mile#53, (tips#17 / base_passenger_fare#11) AS tip_rate#54, CASE WHEN (upper(trim(shared_match_flag#20, None)) = Y) THEN 1.0 ELSE 0.0 END AS is_shared#55]
+                     :     :  +- Filter (((((((((((((((((isnotnull(trip_miles#9) AND isnotnull(trip_time#10L)) AND isnotnull(base_passenger_fare#11)) AND isnotnull(tips#17)) AND isnotnull(driver_pay#18)) AND (trip_miles#9 &gt; 0.0)) AND (trip_time#10L &gt; 0)) AND (base_passenger_fare#11 &gt; 0.0)) AND (tips#17 &gt;= 0.0)) AND (driver_pay#18 &gt;= 0.0)) AND isnotnull(PULocationID#7L)) AND isnotnull(DOLocationID#8L)) AND isnotnull(pickup_datetime#5)) AND (trip_miles#9 &lt; 200.0)) AND (trip_time#10L &lt; 21600)) AND (base_passenger_fare#11 &lt; 1000.0)) AND (pickup_datetime#5 &gt;= 2023-01-01 00:00:00)) AND (pickup_datetime#5 &lt; 2023-04-01 00:00:00))
+                     :     :     +- FileScan parquet [pickup_datetime#5,PULocationID#7L,DOLocationID#8L,trip_miles#9,trip_time#10L,base_passenger_fare#11,tips#17,driver_pay#18,shared_match_flag#20] Batched: true, DataFilters: [isnotnull(trip_miles#9), isnotnull(trip_time#10L), isnotnull(base_passenger_fare#11), isnotnull(..., Format: Parquet, Location: InMemoryFileIndex(3 paths)[file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/fhvhv_tri..., PartitionFilters: [], PushedFilters: [IsNotNull(trip_miles), IsNotNull(trip_time), IsNotNull(base_passenger_fare), IsNotNull(tips), Is..., ReadSchema: struct&lt;pickup_datetime:timestamp_ntz,PULocationID:bigint,DOLocationID:bigint,trip_miles:double,tr...
+                     :     +- BroadcastExchange HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=73]
+                     :        +- Project [LocationID#41 AS PULocationID#56, Borough#42 AS pickup_borough#57]
+                     :           +- Filter isnotnull(LocationID#41)
+                     :              +- FileScan csv [LocationID#41,Borough#42] Batched: false, DataFilters: [isnotnull(LocationID#41)], Format: CSV, Location: InMemoryFileIndex(1 paths)[file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone..., PartitionFilters: [], PushedFilters: [IsNotNull(LocationID)], ReadSchema: struct&lt;LocationID:int,Borough:string&gt;
+                     +- BroadcastExchange HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=77]
+                        +- Project [LocationID#61 AS DOLocationID#59]
+                           +- Filter isnotnull(LocationID#61)
+                              +- FileScan csv [LocationID#61] Batched: false, DataFilters: [isnotnull(LocationID#61)], Format: CSV, Location: InMemoryFileIndex(1 paths)[file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone..., PartitionFilters: [], PushedFilters: [IsNotNull(LocationID)], ReadSchema: struct&lt;LocationID:int&gt;
 
 
 </pre>
@@ -8155,157 +8045,26 @@ Arguments: isFinalPlan=false
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-===== SQL: airport trips by hour =====
-
-== Physical Plan ==
-AdaptiveSparkPlan (21)
-+- Sort (20)
-   +- Exchange (19)
-      +- HashAggregate (18)
-         +- Exchange (17)
-            +- HashAggregate (16)
-               +- Project (15)
-                  +- BroadcastHashJoin LeftOuter BuildRight (14)
-                     :- Project (9)
-                     :  +- BroadcastHashJoin LeftOuter BuildRight (8)
-                     :     :- Project (3)
-                     :     :  +- Filter (2)
-                     :     :     +- Scan parquet  (1)
-                     :     +- BroadcastExchange (7)
-                     :        +- Project (6)
-                     :           +- Filter (5)
-                     :              +- Scan csv  (4)
-                     +- BroadcastExchange (13)
-                        +- Project (12)
-                           +- Filter (11)
-                              +- Scan csv  (10)
-
-
-(1) Scan parquet 
-Output [8]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18]
-Batched: true
-Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/fhvhv_tripdata_2023-01.parquet, ... 2 entries]
-PushedFilters: [IsNotNull(trip_miles), IsNotNull(trip_time), IsNotNull(base_passenger_fare), IsNotNull(tips), IsNotNull(driver_pay), GreaterThan(trip_miles,0.0), GreaterThan(trip_time,0), GreaterThan(base_passenger_fare,0.0), GreaterThanOrEqual(tips,0.0), GreaterThanOrEqual(driver_pay,0.0), IsNotNull(PULocationID), IsNotNull(DOLocationID), IsNotNull(pickup_datetime), LessThan(trip_miles,200.0), LessThan(trip_time,21600), LessThan(base_passenger_fare,1000.0), GreaterThanOrEqual(pickup_datetime,2023-01-01T00:00), LessThan(pickup_datetime,2023-04-01T00:00)]
-ReadSchema: struct&lt;pickup_datetime:timestamp_ntz,PULocationID:bigint,DOLocationID:bigint,trip_miles:double,trip_time:bigint,base_passenger_fare:double,tips:double,driver_pay:double&gt;
-
-(2) Filter
-Input [8]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18]
-Condition : (((((((((((((((((isnotnull(trip_miles#9) AND isnotnull(trip_time#10L)) AND isnotnull(base_passenger_fare#11)) AND isnotnull(tips#17)) AND isnotnull(driver_pay#18)) AND (trip_miles#9 &gt; 0.0)) AND (trip_time#10L &gt; 0)) AND (base_passenger_fare#11 &gt; 0.0)) AND (tips#17 &gt;= 0.0)) AND (driver_pay#18 &gt;= 0.0)) AND isnotnull(PULocationID#7L)) AND isnotnull(DOLocationID#8L)) AND isnotnull(pickup_datetime#5)) AND (trip_miles#9 &lt; 200.0)) AND (trip_time#10L &lt; 21600)) AND (base_passenger_fare#11 &lt; 1000.0)) AND (pickup_datetime#5 &gt;= 2023-01-01 00:00:00)) AND (pickup_datetime#5 &lt; 2023-04-01 00:00:00))
-
-(3) Project
-Output [7]: [cast(PULocationID#7L as int) AS PULocationID#48, cast(DOLocationID#8L as int) AS DOLocationID#49, trip_miles#9, hour(pickup_datetime#5, Some(America/New_York)) AS pickup_hour#51, (cast(trip_time#10L as double) / 60.0) AS trip_minutes#52, (base_passenger_fare#11 / trip_miles#9) AS fare_per_mile#53, (tips#17 / base_passenger_fare#11) AS tip_rate#54]
-Input [8]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18]
-
-(4) Scan csv 
-Output [1]: [LocationID#41]
-Batched: false
-Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone_lookup.csv]
-PushedFilters: [IsNotNull(LocationID)]
-ReadSchema: struct&lt;LocationID:int&gt;
-
-(5) Filter
-Input [1]: [LocationID#41]
-Condition : isnotnull(LocationID#41)
-
-(6) Project
-Output [1]: [LocationID#41 AS PULocationID#56]
-Input [1]: [LocationID#41]
-
-(7) BroadcastExchange
-Input [1]: [PULocationID#56]
-Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=140]
-
-(8) BroadcastHashJoin
-Left keys [1]: [PULocationID#48]
-Right keys [1]: [PULocationID#56]
-Join type: LeftOuter
-Join condition: None
-
-(9) Project
-Output [7]: [PULocationID#48, DOLocationID#49, trip_miles#9, pickup_hour#51, trip_minutes#52, fare_per_mile#53, tip_rate#54]
-Input [8]: [PULocationID#48, DOLocationID#49, trip_miles#9, pickup_hour#51, trip_minutes#52, fare_per_mile#53, tip_rate#54, PULocationID#56]
-
-(10) Scan csv 
-Output [1]: [LocationID#61]
-Batched: false
-Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone_lookup.csv]
-PushedFilters: [IsNotNull(LocationID)]
-ReadSchema: struct&lt;LocationID:int&gt;
-
-(11) Filter
-Input [1]: [LocationID#61]
-Condition : isnotnull(LocationID#61)
-
-(12) Project
-Output [1]: [LocationID#61 AS DOLocationID#59]
-Input [1]: [LocationID#61]
-
-(13) BroadcastExchange
-Input [1]: [DOLocationID#59]
-Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=144]
-
-(14) BroadcastHashJoin
-Left keys [1]: [DOLocationID#49]
-Right keys [1]: [DOLocationID#59]
-Join type: LeftOuter
-Join condition: None
-
-(15) Project
-Output [6]: [pickup_hour#51, (PULocationID#48 IN (1,132,138) OR DOLocationID#49 IN (1,132,138)) AS is_airport#69, trip_miles#9, trip_minutes#52, fare_per_mile#53, tip_rate#54]
-Input [8]: [PULocationID#48, DOLocationID#49, trip_miles#9, pickup_hour#51, trip_minutes#52, fare_per_mile#53, tip_rate#54, DOLocationID#59]
-
-(16) HashAggregate
-Input [6]: [pickup_hour#51, is_airport#69, trip_miles#9, trip_minutes#52, fare_per_mile#53, tip_rate#54]
-Keys [2]: [pickup_hour#51, is_airport#69]
-Functions [5]: [partial_count(1), partial_avg(fare_per_mile#53), partial_avg(tip_rate#54), partial_avg(trip_miles#9), partial_avg(trip_minutes#52)]
-Aggregate Attributes [9]: [count#139L, sum#140, count#141L, sum#142, count#143L, sum#144, count#145L, sum#146, count#147L]
-Results [11]: [pickup_hour#51, is_airport#69, count#148L, sum#149, count#150L, sum#151, count#152L, sum#153, count#154L, sum#155, count#156L]
-
-(17) Exchange
-Input [11]: [pickup_hour#51, is_airport#69, count#148L, sum#149, count#150L, sum#151, count#152L, sum#153, count#154L, sum#155, count#156L]
-Arguments: hashpartitioning(pickup_hour#51, is_airport#69, 16), ENSURE_REQUIREMENTS, [plan_id=149]
-
-(18) HashAggregate
-Input [11]: [pickup_hour#51, is_airport#69, count#148L, sum#149, count#150L, sum#151, count#152L, sum#153, count#154L, sum#155, count#156L]
-Keys [2]: [pickup_hour#51, is_airport#69]
-Functions [5]: [count(1), avg(fare_per_mile#53), avg(tip_rate#54), avg(trip_miles#9), avg(trip_minutes#52)]
-Aggregate Attributes [5]: [count(1)#114L, avg(fare_per_mile#53)#115, avg(tip_rate#54)#116, avg(trip_miles#9)#117, avg(trip_minutes#52)#118]
-Results [7]: [pickup_hour#51, is_airport#69, count(1)#114L AS trips#109L, round(avg(fare_per_mile#53)#115, 2) AS avg_fare_per_mile#110, round(avg(tip_rate#54)#116, 4) AS avg_tip_rate#111, round(avg(trip_miles#9)#117, 2) AS avg_miles#112, round(avg(trip_minutes#52)#118, 2) AS avg_minutes#113]
-
-(19) Exchange
-Input [7]: [pickup_hour#51, is_airport#69, trips#109L, avg_fare_per_mile#110, avg_tip_rate#111, avg_miles#112, avg_minutes#113]
-Arguments: rangepartitioning(pickup_hour#51 ASC NULLS FIRST, is_airport#69 ASC NULLS FIRST, 16), ENSURE_REQUIREMENTS, [plan_id=152]
-
-(20) Sort
-Input [7]: [pickup_hour#51, is_airport#69, trips#109L, avg_fare_per_mile#110, avg_tip_rate#111, avg_miles#112, avg_minutes#113]
-Arguments: [pickup_hour#51 ASC NULLS FIRST, is_airport#69 ASC NULLS FIRST], true, 0
-
-(21) AdaptiveSparkPlan
-Output [7]: [pickup_hour#51, is_airport#69, trips#109L, avg_fare_per_mile#110, avg_tip_rate#111, avg_miles#112, avg_minutes#113]
-Arguments: isFinalPlan=false
-
-
-Wrote /Users/gasto/Documents/week-13-mini-assignment/docs/explain_plan.txt
+<pre>Wrote the formatted plan to /Users/gasto/Documents/week-13-mini-assignment/docs/explain_plan.txt
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ec9ffd63">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d419fd22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="5.-Actions-are-eager">5. Actions are eager<a class="anchor-link" href="#5.-Actions-are-eager">¶</a></h2><p><code>.collect()</code> is the action. The first call launches a job and scans the files.
-The second uncached call plans a new job and scans them again, because nothing
-was stored. That gap is the difference between a transformation and an action.</p>
+<h2 id="5.-Actions-are-eager">5. Actions are eager<a class="anchor-link" href="#5.-Actions-are-eager">¶</a></h2><p>Goal: time a transformation against the action that actually reads the files.</p>
+<p>The first <code>collect()</code> launches a job. The second query is a different
+aggregation on the same lineage, so Spark runs the plan again.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14bf01c6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40058914">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8347,12 +8106,6 @@ was stored. That gap is the difference between a transformation and an action.</
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>[Stage 4:===================================================&gt;     (10 + 1) / 11]</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>                                                                                </pre>
 </div>
 </div>
@@ -8365,34 +8118,47 @@ was stored. That gap is the difference between a transformation and an action.</
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>[Stage 13:==============================================&gt;          (9 + 2) / 11]                                                                                </pre>
+<pre>[Stage 13:==============================================&gt;          (9 + 2) / 11]</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>[Stage 13:==================================================&gt;     (10 + 1) / 11]</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Action 1, uncached borough SQL: 9.31s
-Action 2, uncached airport SQL: 5.22s
+<pre>Action 1, uncached borough SQL: 9.71s
+Action 2, uncached airport SQL: 6.41s
 </pre>
 </div>
 </div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>                                                                                </pre>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08d0eb93">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=781b3d8a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="6.-Cache-the-cleaned-trips-and-repeat-the-actions">6. Cache the cleaned trips and repeat the actions<a class="anchor-link" href="#6.-Cache-the-cleaned-trips-and-repeat-the-actions">¶</a></h2><p><code>.cache()</code> is itself lazy. The next action pays to build the cache. The action
-after that should reuse the cached trips instead of scanning Parquet again.
-The cleaned trip table is the frame worth caching: both SQL queries read it.
-The tiny aggregates are not.</p>
+<h2 id="6.-Cache-the-cleaned-trips">6. Cache the cleaned trips<a class="anchor-link" href="#6.-Cache-the-cleaned-trips">¶</a></h2><p>Goal: see what <code>.persist()</code> does, and what it does not do.</p>
+<p><code>persist</code> is lazy, like <code>cache</code>. Repeating the same small SQL can come back
+quickly because the answer is a handful of rows. The action that stores the
+trip table is <code>count()</code>. On a laptop that cached copy is larger than the
+compressed Parquet, which is the tradeoff the timings below measure.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68d77d9d">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=00195335">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8404,25 +8170,23 @@ The tiny aggregates are not.</p>
 
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 <span class="n">sql_borough</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-<span class="n">cache_build_s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+<span class="n">repeat_borough_s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
 
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 <span class="n">sql_airport</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-<span class="n">cached_airport_s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+<span class="n">repeat_airport_s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
 
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 <span class="n">cleaned_rows</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Action 3, first action after cache(): </span><span class="si">{</span><span class="n">cache_build_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s (computes and stores)"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Action 4, second action after cache(): </span><span class="si">{</span><span class="n">cached_airport_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s (reuses the cache)"</span><span class="p">)</span>
+<span class="n">count_seconds</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Repeated borough SQL: </span><span class="si">{</span><span class="n">repeat_borough_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Repeated airport SQL: </span><span class="si">{</span><span class="n">repeat_airport_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"count() after persist(), the pass that stores the trips: </span><span class="si">{</span><span class="n">count_seconds</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cleaned trip rows: </span><span class="si">{</span><span class="n">cleaned_rows</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Borough summary:"</span><span class="p">)</span>
 <span class="n">sql_borough</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Airport comparison, first hours:"</span><span class="p">)</span>
 <span class="n">sql_airport</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="s2">"Repeated-action speedup: "</span>
-    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">uncached_airport_s</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">cached_airport_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x "</span>
-    <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">uncached_airport_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s uncached vs </span><span class="si">{</span><span class="n">cached_airport_s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s cached)"</span>
-<span class="p">)</span>
 
 <span class="n">top_zones</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">joined</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">"pickup_borough"</span><span class="p">,</span> <span class="s2">"pickup_zone"</span><span class="p">)</span>
@@ -8474,14 +8238,21 @@ The tiny aggregates are not.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>[Stage 30:==============================================&gt;          (9 + 2) / 11]</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>[Stage 30:==================================================&gt;     (10 + 1) / 11]                                                                                </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Action 3, first action after cache(): 0.11s (computes and stores)
-Action 4, second action after cache(): 0.06s (reuses the cache)
+<pre>Repeated borough SQL: 0.03s
+Repeated airport SQL: 0.04s
+count() after persist(), the pass that stores the trips: 39.04s
 Cleaned trip rows: 56,799,186
 Borough summary:
 </pre>
@@ -8496,13 +8267,7 @@ Borough summary:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>[Stage 33:==============================================&gt;          (9 + 2) / 11]</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>[Stage 33:==================================================&gt;     (10 + 1) / 11]</pre>
+<pre>[Stage 33:==============================================&gt;          (9 + 2) / 11][Stage 33:==================================================&gt;     (10 + 1) / 11]</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -8539,7 +8304,7 @@ Airport comparison, first hours:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>[Stage 36:==================================================&gt;     (10 + 1) / 11]</pre>
+<pre>[Stage 36:==================================================&gt;     (10 + 1) / 11][Stage 36:========================================================(11 + 0) / 11]</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -8564,7 +8329,6 @@ Airport comparison, first hours:
 |3          |true      |76687  |3.32             |0.0487      |12.09    |23.28      |
 +-----------+----------+-------+-----------------+------------+---------+-----------+
 only showing top 8 rows
-Repeated-action speedup: 89.54x (5.22s uncached vs 0.06s cached)
 </pre>
 </div>
 </div>
@@ -8653,25 +8417,27 @@ Repeated-action speedup: 89.54x (5.22s uncached vs 0.06s cached)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>                                                                                </pre>
+<pre>[Stage 47:==================================================&gt;     (10 + 1) / 11]                                                                                </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2284ab10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4b54b49d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="7.-Write-Parquet">7. Write Parquet<a class="anchor-link" href="#7.-Write-Parquet">¶</a></h2><p>The result is a few hundred rows, so the partition column is the borough on
-that summary, not the raw trip table. Partitioning the raw trips would be a
-full shuffle of every ride just to name the output folders.</p>
+<h2 id="7.-Window-function">7. Window function<a class="anchor-link" href="#7.-Window-function">¶</a></h2><p>Goal: rank rows inside a group without collapsing that group away.</p>
+<p><code>groupBy</code> already made one row per borough and hour. A window keeps every
+row and adds a rank within the borough. The SQL underneath asks the same
+question, so the two results should match. This is the same pattern as the
+session's rank of RDU destinations by year.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4124124a">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d1257298">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8679,12 +8445,32 @@ full shuffle of every ride just to name the output folders.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">borough_path</span> <span class="o">=</span> <span class="n">OUT</span> <span class="o">/</span> <span class="s2">"borough_hour_summary"</span>
-<span class="n">airport_path</span> <span class="o">=</span> <span class="n">OUT</span> <span class="o">/</span> <span class="s2">"airport_by_hour"</span>
-<span class="n">borough_hour</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">"pickup_borough"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">borough_path</span><span class="p">))</span>
-<span class="n">sql_airport</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">airport_path</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Wrote"</span><span class="p">,</span> <span class="n">borough_path</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Wrote"</span><span class="p">,</span> <span class="n">airport_path</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">hour_window</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">"pickup_borough"</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="s2">"trip_count"</span><span class="p">))</span>
+<span class="n">ranked_hours</span> <span class="o">=</span> <span class="n">borough_hour</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">"hour_rank"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">row_number</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">hour_window</span><span class="p">))</span>
+<span class="n">ranked_hours</span> <span class="o">=</span> <span class="n">ranked_hours</span><span class="o">.</span><span class="n">persist</span><span class="p">(</span><span class="n">StorageLevel</span><span class="o">.</span><span class="n">MEMORY_AND_DISK</span><span class="p">)</span>
+<span class="n">ranked_hours</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="n">busiest_hours</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ranked_hours</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"hour_rank"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"pickup_borough"</span><span class="p">,</span> <span class="s2">"pickup_hour"</span><span class="p">,</span> <span class="s2">"trip_count"</span><span class="p">,</span> <span class="s2">"hour_rank"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="s2">"trip_count"</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Busiest hour in each borough:"</span><span class="p">)</span>
+<span class="n">busiest_hours</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ranked_hours</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="s2">"ranked_hours"</span><span class="p">)</span>
+<span class="n">sql_busiest</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    SELECT pickup_borough, pickup_hour, trip_count</span>
+<span class="sd">    FROM ranked_hours</span>
+<span class="sd">    WHERE hour_rank = 1</span>
+<span class="sd">    ORDER BY trip_count DESC</span>
+<span class="sd">    """</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Same ranking in SQL:"</span><span class="p">)</span>
+<span class="n">sql_busiest</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">busiest_hour_rows</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">asDict</span><span class="p">()</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sql_busiest</span><span class="o">.</span><span class="n">collect</span><span class="p">()]</span>
+<span class="n">ranked_hours</span><span class="o">.</span><span class="n">unpersist</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8714,14 +8500,114 @@ full shuffle of every ride just to name the output folders.</p>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Busiest hour in each borough:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>+--------------+-----------+----------+---------+
+|pickup_borough|pickup_hour|trip_count|hour_rank|
++--------------+-----------+----------+---------+
+|Manhattan     |19         |1567322   |1        |
+|Brooklyn      |18         |893714    |1        |
+|Queens        |18         |624603    |1        |
+|Bronx         |8          |451439    |1        |
+|Staten Island |8          |51997     |1        |
+|N/A           |16         |204       |1        |
+|EWR           |5          |1         |1        |
++--------------+-----------+----------+---------+
+
+Same ranking in SQL:
++--------------+-----------+----------+
+|pickup_borough|pickup_hour|trip_count|
++--------------+-----------+----------+
+|Manhattan     |19         |1567322   |
+|Brooklyn      |18         |893714    |
+|Queens        |18         |624603    |
+|Bronx         |8          |451439    |
+|Staten Island |8          |51997     |
+|N/A           |16         |204       |
+|EWR           |5          |1         |
++--------------+-----------+----------+
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>DataFrame[pickup_borough: string, pickup_hour: int, trip_count: bigint, avg_miles: double, avg_fare_per_mile: double, avg_tip_rate: double, shared_trip_rate: double, total_driver_pay: double, hour_rank: int]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fc1a593a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="8.-Write-Parquet">8. Write Parquet<a class="anchor-link" href="#8.-Write-Parquet">¶</a></h2><p>The result is a few hundred rows, so the partition column is the borough on
+that summary, not the raw trip table. Partitioning the raw trips would be a
+full shuffle of every ride just to name the output folders.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a9abe2b7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">borough_path</span> <span class="o">=</span> <span class="n">OUT</span> <span class="o">/</span> <span class="s2">"borough_hour_summary"</span>
+<span class="n">airport_path</span> <span class="o">=</span> <span class="n">OUT</span> <span class="o">/</span> <span class="s2">"airport_by_hour"</span>
+<span class="n">borough_hour</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">"pickup_borough"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">borough_path</span><span class="p">))</span>
+<span class="n">sql_airport</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">airport_path</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Wrote"</span><span class="p">,</span> <span class="n">borough_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Wrote"</span><span class="p">,</span> <span class="n">airport_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>[Stage 63:=========================================&gt;               (8 + 3) / 11]</pre>
+<pre>[Stage 97:=========================================&gt;               (8 + 3) / 11]</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>[Stage 63:==================================================&gt;     (10 + 1) / 11]</pre>
+<pre>[Stage 97:==============================================&gt;          (9 + 2) / 11][Stage 97:==================================================&gt;     (10 + 1) / 11]</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>                                                                                </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>[Stage 105:========================================&gt;               (8 + 3) / 11]</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>[Stage 105:==================================================&gt;    (10 + 1) / 11]</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -8741,22 +8627,22 @@ Wrote /Users/gasto/Documents/week-13-mini-assignment/data/output/airport_by_hour
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=402c1248">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d0f4a8bb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="8.-Numbers-used-in-the-write-up">8. Numbers used in the write-up<a class="anchor-link" href="#8.-Numbers-used-in-the-write-up">¶</a></h2><p>These are the values the README quotes. They come from the actions above.</p>
+<h2 id="9.-Numbers-used-in-the-write-up">9. Numbers used in the write-up<a class="anchor-link" href="#9.-Numbers-used-in-the-write-up">¶</a></h2><p>These are the values the README quotes. They come from the actions above.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8e7991da">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22962750">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">weighted</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">airport_flag</span><span class="p">):</span>
@@ -8786,8 +8672,9 @@ Wrote /Users/gasto/Documents/week-13-mini-assignment/data/output/airport_by_hour
     <span class="s2">"transform_seconds"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">transform_seconds</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
     <span class="s2">"uncached_borough_seconds"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">uncached_borough_s</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
     <span class="s2">"uncached_airport_seconds"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">uncached_airport_s</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="s2">"cache_build_seconds"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">cache_build_s</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="s2">"cached_airport_seconds"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">cached_airport_s</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="s2">"repeat_borough_seconds"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">repeat_borough_s</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="s2">"repeat_airport_seconds"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">repeat_airport_s</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="s2">"count_seconds"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">count_seconds</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
     <span class="s2">"borough_summary"</span><span class="p">:</span> <span class="n">borough_rows</span><span class="p">,</span>
     <span class="s2">"airport_vs_not"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"airport"</span><span class="p">:</span> <span class="n">weighted</span><span class="p">(</span><span class="n">airport_rows</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
@@ -8797,6 +8684,7 @@ Wrote /Users/gasto/Documents/week-13-mini-assignment/data/output/airport_by_hour
     <span class="s2">"peak_hour_trips"</span><span class="p">:</span> <span class="n">hour_totals</span><span class="p">[</span><span class="n">peak_hour</span><span class="p">],</span>
     <span class="s2">"busiest_borough"</span><span class="p">:</span> <span class="n">busiest</span><span class="p">[</span><span class="s2">"pickup_borough"</span><span class="p">],</span>
     <span class="s2">"top_zones"</span><span class="p">:</span> <span class="n">top_zone_rows</span><span class="p">,</span>
+    <span class="s2">"busiest_hour_by_borough"</span><span class="p">:</span> <span class="n">busiest_hour_rows</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="n">metrics_path</span> <span class="o">=</span> <span class="n">DOCS</span> <span class="o">/</span> <span class="s2">"metrics.json"</span>
 <span class="n">metrics_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
@@ -8825,12 +8713,12 @@ Wrote /Users/gasto/Documents/week-13-mini-assignment/docs/metrics.json
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d821c715">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=de6f6461">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">joined</span><span class="o">.</span><span class="n">unpersist</span><span class="p">()</span>
@@ -8848,26 +8736,6 @@ Wrote /Users/gasto/Documents/week-13-mini-assignment/docs/metrics.json
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Screenshot pause finished"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">spark</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>SPARK_UI_READY http://127.0.0.1:4040
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Screenshot pause finished
-</pre>
 </div>
 </div>
 </div>

@@ -17,6 +17,7 @@ from pathlib import Path
 from pyspark import StorageLevel
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
+from pyspark.sql.window import Window
 
 # %%
 def ensure_java():
@@ -118,10 +119,12 @@ zones.printSchema()
 # %% [markdown]
 # ## 3. Transformations are lazy
 #
-# The cell below only records a plan: two filters, a narrow projection,
-# derived columns, two broadcast joins, and a groupBy. None of that reads the
-# trip files. The clock should stay near zero, and no job is launched until a
-# later action.
+# Goal: see that Spark plans before it runs.
+#
+# `filter`, `select`, `withColumn`, `join`, and `groupBy` only build a plan.
+# `show`, `count`, and `write` run it. Because Spark sees the whole plan first,
+# it can push filters into the Parquet files and read only the columns this
+# query uses. The cell below should finish immediately.
 
 # %%
 t0 = time.perf_counter()
@@ -265,17 +268,19 @@ sql_airport = spark.sql(
 )
 
 transform_seconds = time.perf_counter() - t0
-print(
-    f"Transformations built in {transform_seconds:.4f}s. "
-    "No action has run, so Spark has not scanned the trip files."
-)
+print(f"Transformations built in {transform_seconds:.4f}s.")
+print("Nothing has run yet:", borough_hour)
 
 # %% [markdown]
 # ## 4. Physical plan
 #
-# `explain` asks the optimizer for the plan it will run. It does not compute the
-# aggregations. The formatted plan should show pushed Parquet filters and
-# `BroadcastHashJoin` for both zone lookups.
+# Goal: read the plan the way the Databricks session does.
+#
+# `explain()` does not compute the aggregation. In the scan, `ReadSchema` should
+# be the few columns we kept, and `PushedFilters` should list the mile, time,
+# fare, and date predicates. Both zone lookups should be a `BroadcastHashJoin`,
+# not a shuffle of the trips. The session's Photon engine prints `DataFilters`
+# and `PhotonBroadcastHashJoin` for the same two ideas.
 
 # %%
 def explain_formatted(df):
@@ -287,27 +292,26 @@ def explain_formatted(df):
         return df._jdf.queryExecution().explainString(mode)
 
 
-plan_sections = [
+print("Borough-hour plan:")
+borough_hour.explain()
+
+plan_text = []
+for title, frame in (
     ("Borough-hour aggregation", borough_hour),
     ("SQL: airport trips by hour", sql_airport),
-]
-plan_text = []
-for title, frame in plan_sections:
-    text = explain_formatted(frame)
-    print(f"\n===== {title} =====\n")
-    print(text)
-    plan_text.append(f"===== {title} =====\n{text}\n")
-
+):
+    plan_text.append(f"===== {title} =====\n{explain_formatted(frame)}\n")
 plan_path = DOCS / "explain_plan.txt"
 plan_path.write_text("\n".join(plan_text))
-print("Wrote", plan_path)
+print("Wrote the formatted plan to", plan_path)
 
 # %% [markdown]
 # ## 5. Actions are eager
 #
-# `.collect()` is the action. The first call launches a job and scans the files.
-# The second uncached call plans a new job and scans them again, because nothing
-# was stored. That gap is the difference between a transformation and an action.
+# Goal: time a transformation against the action that actually reads the files.
+#
+# The first `collect()` launches a job. The second query is a different
+# aggregation on the same lineage, so Spark runs the plan again.
 
 # %%
 t0 = time.perf_counter()
@@ -322,37 +326,37 @@ print(f"Action 1, uncached borough SQL: {uncached_borough_s:.2f}s")
 print(f"Action 2, uncached airport SQL: {uncached_airport_s:.2f}s")
 
 # %% [markdown]
-# ## 6. Cache the cleaned trips and repeat the actions
+# ## 6. Cache the cleaned trips
 #
-# `.cache()` is itself lazy. The next action pays to build the cache. The action
-# after that should reuse the cached trips instead of scanning Parquet again.
-# The cleaned trip table is the frame worth caching: both SQL queries read it.
-# The tiny aggregates are not.
+# Goal: see what `.persist()` does, and what it does not do.
+#
+# `persist` is lazy, like `cache`. Repeating the same small SQL can come back
+# quickly because the answer is a handful of rows. The action that stores the
+# trip table is `count()`. On a laptop that cached copy is larger than the
+# compressed Parquet, which is the tradeoff the timings below measure.
 
 # %%
 joined.persist(StorageLevel.MEMORY_AND_DISK)
 
 t0 = time.perf_counter()
 sql_borough.collect()
-cache_build_s = time.perf_counter() - t0
+repeat_borough_s = time.perf_counter() - t0
 
 t0 = time.perf_counter()
 sql_airport.collect()
-cached_airport_s = time.perf_counter() - t0
+repeat_airport_s = time.perf_counter() - t0
 
+t0 = time.perf_counter()
 cleaned_rows = joined.count()
-print(f"Action 3, first action after cache(): {cache_build_s:.2f}s (computes and stores)")
-print(f"Action 4, second action after cache(): {cached_airport_s:.2f}s (reuses the cache)")
+count_seconds = time.perf_counter() - t0
+print(f"Repeated borough SQL: {repeat_borough_s:.2f}s")
+print(f"Repeated airport SQL: {repeat_airport_s:.2f}s")
+print(f"count() after persist(), the pass that stores the trips: {count_seconds:.2f}s")
 print(f"Cleaned trip rows: {cleaned_rows:,}")
 print("Borough summary:")
 sql_borough.show(truncate=False)
 print("Airport comparison, first hours:")
 sql_airport.show(8, truncate=False)
-print(
-    "Repeated-action speedup: "
-    f"{uncached_airport_s / cached_airport_s:.2f}x "
-    f"({uncached_airport_s:.2f}s uncached vs {cached_airport_s:.2f}s cached)"
-)
 
 top_zones = (
     joined.groupBy("pickup_borough", "pickup_zone")
@@ -370,7 +374,45 @@ top_zones.show(truncate=False)
 hour_rows = [row.asDict() for row in borough_hour.collect()]
 
 # %% [markdown]
-# ## 7. Write Parquet
+# ## 7. Window function
+#
+# Goal: rank rows inside a group without collapsing that group away.
+#
+# `groupBy` already made one row per borough and hour. A window keeps every
+# row and adds a rank within the borough. The SQL underneath asks the same
+# question, so the two results should match. This is the same pattern as the
+# session's rank of RDU destinations by year.
+
+# %%
+hour_window = Window.partitionBy("pickup_borough").orderBy(F.desc("trip_count"))
+ranked_hours = borough_hour.withColumn("hour_rank", F.row_number().over(hour_window))
+ranked_hours = ranked_hours.persist(StorageLevel.MEMORY_AND_DISK)
+ranked_hours.count()
+
+busiest_hours = (
+    ranked_hours.filter(F.col("hour_rank") == 1)
+    .select("pickup_borough", "pickup_hour", "trip_count", "hour_rank")
+    .orderBy(F.desc("trip_count"))
+)
+print("Busiest hour in each borough:")
+busiest_hours.show(truncate=False)
+
+ranked_hours.createOrReplaceTempView("ranked_hours")
+sql_busiest = spark.sql(
+    """
+    SELECT pickup_borough, pickup_hour, trip_count
+    FROM ranked_hours
+    WHERE hour_rank = 1
+    ORDER BY trip_count DESC
+    """
+)
+print("Same ranking in SQL:")
+sql_busiest.show(truncate=False)
+busiest_hour_rows = [row.asDict() for row in sql_busiest.collect()]
+ranked_hours.unpersist()
+
+# %% [markdown]
+# ## 8. Write Parquet
 #
 # The result is a few hundred rows, so the partition column is the borough on
 # that summary, not the raw trip table. Partitioning the raw trips would be a
@@ -385,7 +427,7 @@ print("Wrote", borough_path)
 print("Wrote", airport_path)
 
 # %% [markdown]
-# ## 8. Numbers used in the write-up
+# ## 9. Numbers used in the write-up
 #
 # These are the values the README quotes. They come from the actions above.
 
@@ -417,8 +459,9 @@ metrics = {
     "transform_seconds": round(transform_seconds, 4),
     "uncached_borough_seconds": round(uncached_borough_s, 2),
     "uncached_airport_seconds": round(uncached_airport_s, 2),
-    "cache_build_seconds": round(cache_build_s, 2),
-    "cached_airport_seconds": round(cached_airport_s, 2),
+    "repeat_borough_seconds": round(repeat_borough_s, 2),
+    "repeat_airport_seconds": round(repeat_airport_s, 2),
+    "count_seconds": round(count_seconds, 2),
     "borough_summary": borough_rows,
     "airport_vs_not": {
         "airport": weighted(airport_rows, True),
@@ -428,6 +471,7 @@ metrics = {
     "peak_hour_trips": hour_totals[peak_hour],
     "busiest_borough": busiest["pickup_borough"],
     "top_zones": top_zone_rows,
+    "busiest_hour_by_borough": busiest_hour_rows,
 }
 metrics_path = DOCS / "metrics.json"
 metrics_path.write_text(json.dumps(metrics, indent=2, default=str))
