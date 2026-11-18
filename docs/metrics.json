@@ -1,0 +1,161 @@
+{
+  "input_bytes": 1455197089,
+  "input_gib": 1.355,
+  "cleaned_rows": 56799186,
+  "transform_seconds": 0.433,
+  "uncached_borough_seconds": 9.31,
+  "uncached_airport_seconds": 5.22,
+  "cache_build_seconds": 0.11,
+  "cached_airport_seconds": 0.06,
+  "borough_summary": [
+    {
+      "pickup_borough": "Manhattan",
+      "trips": 23381451,
+      "total_base_fare": 570202773.04,
+      "avg_tip_rate": 0.0522,
+      "avg_fare_per_mile": 7.52,
+      "avg_miles": 4.77,
+      "shared_trip_rate": 0.0103,
+      "same_borough_rate": 0.7204
+    },
+    {
+      "pickup_borough": "Brooklyn",
+      "trips": 14689265,
+      "total_base_fare": 293692184.47,
+      "avg_tip_rate": 0.0372,
+      "avg_fare_per_mile": 6.55,
+      "avg_miles": 4.14,
+      "shared_trip_rate": 0.0126,
+      "same_borough_rate": 0.7604
+    },
+    {
+      "pickup_borough": "Queens",
+      "trips": 11124186,
+      "total_base_fare": 275771338.44,
+      "avg_tip_rate": 0.0406,
+      "avg_fare_per_mile": 5.43,
+      "avg_miles": 6.41,
+      "shared_trip_rate": 0.0117,
+      "same_borough_rate": 0.6439
+    },
+    {
+      "pickup_borough": "Bronx",
+      "trips": 6829480,
+      "total_base_fare": 122246483.62,
+      "avg_tip_rate": 0.0169,
+      "avg_fare_per_mile": 5.93,
+      "avg_miles": 4.29,
+      "shared_trip_rate": 0.0111,
+      "same_borough_rate": 0.7369
+    },
+    {
+      "pickup_borough": "Staten Island",
+      "trips": 771881,
+      "total_base_fare": 14981633.0,
+      "avg_tip_rate": 0.0445,
+      "avg_fare_per_mile": 5.24,
+      "avg_miles": 5.13,
+      "shared_trip_rate": 0.0025,
+      "same_borough_rate": 0.8607
+    },
+    {
+      "pickup_borough": "N/A",
+      "trips": 2920,
+      "total_base_fare": 65809.99,
+      "avg_tip_rate": 0.0214,
+      "avg_fare_per_mile": 10.36,
+      "avg_miles": 5.91,
+      "shared_trip_rate": 0.0055,
+      "same_borough_rate": 0.3223
+    },
+    {
+      "pickup_borough": "EWR",
+      "trips": 3,
+      "total_base_fare": 192.81,
+      "avg_tip_rate": 0.1389,
+      "avg_fare_per_mile": 4203.13,
+      "avg_miles": 4.68,
+      "shared_trip_rate": 0.0,
+      "same_borough_rate": 0.6667
+    }
+  ],
+  "airport_vs_not": {
+    "airport": {
+      "trips": 4491600,
+      "avg_fare_per_mile": 3.8854265540119335,
+      "avg_tip_rate": 0.06570651620803276,
+      "avg_miles": 13.42597094353905
+    },
+    "not_airport": {
+      "trips": 52307586,
+      "avg_fare_per_mile": 6.873951714384219,
+      "avg_tip_rate": 0.039610808342407544,
+      "avg_miles": 4.141956421387904
+    }
+  },
+  "peak_hour": 18,
+  "peak_hour_trips": 3505164,
+  "busiest_borough": "Manhattan",
+  "top_zones": [
+    {
+      "pickup_borough": "Queens",
+      "pickup_zone": "JFK Airport",
+      "trips": 999677,
+      "avg_fare_per_mile": 3.63
+    },
+    {
+      "pickup_borough": "Queens",
+      "pickup_zone": "LaGuardia Airport",
+      "trips": 960057,
+      "avg_fare_per_mile": 4.24
+    },
+    {
+      "pickup_borough": "Manhattan",
+      "pickup_zone": "East Village",
+      "trips": 855583,
+      "avg_fare_per_mile": 7.7
+    },
+    {
+      "pickup_borough": "Brooklyn",
+      "pickup_zone": "Crown Heights North",
+      "trips": 748107,
+      "avg_fare_per_mile": 6.64
+    },
+    {
+      "pickup_borough": "Manhattan",
+      "pickup_zone": "Midtown Center",
+      "trips": 731888,
+      "avg_fare_per_mile": 8.98
+    },
+    {
+      "pickup_borough": "Manhattan",
+      "pickup_zone": "Times Sq/Theatre District",
+      "trips": 730606,
+      "avg_fare_per_mile": 8.38
+    },
+    {
+      "pickup_borough": "Manhattan",
+      "pickup_zone": "TriBeCa/Civic Center",
+      "trips": 702622,
+      "avg_fare_per_mile": 7.82
+    },
+    {
+      "pickup_borough": "Manhattan",
+      "pickup_zone": "Union Sq",
+      "trips": 665857,
+      "avg_fare_per_mile": 8.33
+    },
+    {
+      "pickup_borough": "Manhattan",
+      "pickup_zone": "East Chelsea",
+      "trips": 660573,
+      "avg_fare_per_mile": 7.94
+    },
+    {
+      "pickup_borough": "Manhattan",
+      "pickup_zone": "Midtown South",
+      "trips": 629737,
+      "avg_fare_per_mile": 8.04
+    }
+  ]
+}

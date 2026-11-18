@@ -1,0 +1,24 @@
+# Raw trip files are >1 GB. Download them with scripts/download_data.sh.
+data/raw/
+data/output_smoke/
+docs/explain_plan_smoke.txt
+docs/metrics_smoke.json
+docs/screenshots_done
+docs/spark_ui_ready
+docs/spark_ui_url.txt
+
+# Spark local scratch
+spark-warehouse/
+tmp/
+metastore_db/
+derby.log
+*.crc
+
+# Python / Jupyter
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+*.pyc
+
+# OS
+.DS_Store

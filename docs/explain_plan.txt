@@ -1,0 +1,259 @@
+===== Borough-hour aggregation =====
+== Physical Plan ==
+AdaptiveSparkPlan (21)
++- Sort (20)
+   +- Exchange (19)
+      +- HashAggregate (18)
+         +- Exchange (17)
+            +- HashAggregate (16)
+               +- Project (15)
+                  +- BroadcastHashJoin LeftOuter BuildRight (14)
+                     :- Project (9)
+                     :  +- BroadcastHashJoin LeftOuter BuildRight (8)
+                     :     :- Project (3)
+                     :     :  +- Filter (2)
+                     :     :     +- Scan parquet  (1)
+                     :     +- BroadcastExchange (7)
+                     :        +- Project (6)
+                     :           +- Filter (5)
+                     :              +- Scan csv  (4)
+                     +- BroadcastExchange (13)
+                        +- Project (12)
+                           +- Filter (11)
+                              +- Scan csv  (10)
+
+
+(1) Scan parquet 
+Output [9]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18, shared_match_flag#20]
+Batched: true
+Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/fhvhv_tripdata_2023-01.parquet, ... 2 entries]
+PushedFilters: [IsNotNull(trip_miles), IsNotNull(trip_time), IsNotNull(base_passenger_fare), IsNotNull(tips), IsNotNull(driver_pay), GreaterThan(trip_miles,0.0), GreaterThan(trip_time,0), GreaterThan(base_passenger_fare,0.0), GreaterThanOrEqual(tips,0.0), GreaterThanOrEqual(driver_pay,0.0), IsNotNull(PULocationID), IsNotNull(DOLocationID), IsNotNull(pickup_datetime), LessThan(trip_miles,200.0), LessThan(trip_time,21600), LessThan(base_passenger_fare,1000.0), GreaterThanOrEqual(pickup_datetime,2023-01-01T00:00), LessThan(pickup_datetime,2023-04-01T00:00)]
+ReadSchema: struct<pickup_datetime:timestamp_ntz,PULocationID:bigint,DOLocationID:bigint,trip_miles:double,trip_time:bigint,base_passenger_fare:double,tips:double,driver_pay:double,shared_match_flag:string>
+
+(2) Filter
+Input [9]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18, shared_match_flag#20]
+Condition : (((((((((((((((((isnotnull(trip_miles#9) AND isnotnull(trip_time#10L)) AND isnotnull(base_passenger_fare#11)) AND isnotnull(tips#17)) AND isnotnull(driver_pay#18)) AND (trip_miles#9 > 0.0)) AND (trip_time#10L > 0)) AND (base_passenger_fare#11 > 0.0)) AND (tips#17 >= 0.0)) AND (driver_pay#18 >= 0.0)) AND isnotnull(PULocationID#7L)) AND isnotnull(DOLocationID#8L)) AND isnotnull(pickup_datetime#5)) AND (trip_miles#9 < 200.0)) AND (trip_time#10L < 21600)) AND (base_passenger_fare#11 < 1000.0)) AND (pickup_datetime#5 >= 2023-01-01 00:00:00)) AND (pickup_datetime#5 < 2023-04-01 00:00:00))
+
+(3) Project
+Output [8]: [cast(PULocationID#7L as int) AS PULocationID#48, cast(DOLocationID#8L as int) AS DOLocationID#49, trip_miles#9, driver_pay#18, hour(pickup_datetime#5, Some(America/New_York)) AS pickup_hour#51, (base_passenger_fare#11 / trip_miles#9) AS fare_per_mile#53, (tips#17 / base_passenger_fare#11) AS tip_rate#54, CASE WHEN (upper(trim(shared_match_flag#20, None)) = Y) THEN 1.0 ELSE 0.0 END AS is_shared#55]
+Input [9]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18, shared_match_flag#20]
+
+(4) Scan csv 
+Output [2]: [LocationID#41, Borough#42]
+Batched: false
+Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone_lookup.csv]
+PushedFilters: [IsNotNull(LocationID)]
+ReadSchema: struct<LocationID:int,Borough:string>
+
+(5) Filter
+Input [2]: [LocationID#41, Borough#42]
+Condition : isnotnull(LocationID#41)
+
+(6) Project
+Output [2]: [LocationID#41 AS PULocationID#56, Borough#42 AS pickup_borough#57]
+Input [2]: [LocationID#41, Borough#42]
+
+(7) BroadcastExchange
+Input [2]: [PULocationID#56, pickup_borough#57]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=73]
+
+(8) BroadcastHashJoin
+Left keys [1]: [PULocationID#48]
+Right keys [1]: [PULocationID#56]
+Join type: LeftOuter
+Join condition: None
+
+(9) Project
+Output [8]: [DOLocationID#49, trip_miles#9, driver_pay#18, pickup_hour#51, fare_per_mile#53, tip_rate#54, is_shared#55, pickup_borough#57]
+Input [10]: [PULocationID#48, DOLocationID#49, trip_miles#9, driver_pay#18, pickup_hour#51, fare_per_mile#53, tip_rate#54, is_shared#55, PULocationID#56, pickup_borough#57]
+
+(10) Scan csv 
+Output [1]: [LocationID#61]
+Batched: false
+Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone_lookup.csv]
+PushedFilters: [IsNotNull(LocationID)]
+ReadSchema: struct<LocationID:int>
+
+(11) Filter
+Input [1]: [LocationID#61]
+Condition : isnotnull(LocationID#61)
+
+(12) Project
+Output [1]: [LocationID#61 AS DOLocationID#59]
+Input [1]: [LocationID#61]
+
+(13) BroadcastExchange
+Input [1]: [DOLocationID#59]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=77]
+
+(14) BroadcastHashJoin
+Left keys [1]: [DOLocationID#49]
+Right keys [1]: [DOLocationID#59]
+Join type: LeftOuter
+Join condition: None
+
+(15) Project
+Output [7]: [coalesce(pickup_borough#57, Unknown) AS pickup_borough#67, pickup_hour#51, trip_miles#9, fare_per_mile#53, tip_rate#54, is_shared#55, driver_pay#18]
+Input [9]: [DOLocationID#49, trip_miles#9, driver_pay#18, pickup_hour#51, fare_per_mile#53, tip_rate#54, is_shared#55, pickup_borough#57, DOLocationID#59]
+
+(16) HashAggregate
+Input [7]: [pickup_borough#67, pickup_hour#51, trip_miles#9, fare_per_mile#53, tip_rate#54, is_shared#55, driver_pay#18]
+Keys [2]: [pickup_borough#67, pickup_hour#51]
+Functions [6]: [partial_count(1), partial_avg(trip_miles#9), partial_avg(fare_per_mile#53), partial_avg(tip_rate#54), partial_avg(is_shared#55), partial_sum(driver_pay#18)]
+Aggregate Attributes [10]: [count#119L, sum#120, count#121L, sum#122, count#123L, sum#124, count#125L, sum#126, count#127L, sum#128]
+Results [12]: [pickup_borough#67, pickup_hour#51, count#129L, sum#130, count#131L, sum#132, count#133L, sum#134, count#135L, sum#136, count#137L, sum#138]
+
+(17) Exchange
+Input [12]: [pickup_borough#67, pickup_hour#51, count#129L, sum#130, count#131L, sum#132, count#133L, sum#134, count#135L, sum#136, count#137L, sum#138]
+Arguments: hashpartitioning(pickup_borough#67, pickup_hour#51, 16), ENSURE_REQUIREMENTS, [plan_id=82]
+
+(18) HashAggregate
+Input [12]: [pickup_borough#67, pickup_hour#51, count#129L, sum#130, count#131L, sum#132, count#133L, sum#134, count#135L, sum#136, count#137L, sum#138]
+Keys [2]: [pickup_borough#67, pickup_hour#51]
+Functions [6]: [count(1), avg(trip_miles#9), avg(fare_per_mile#53), avg(tip_rate#54), avg(is_shared#55), sum(driver_pay#18)]
+Aggregate Attributes [6]: [count(1)#89L, avg(trip_miles#9)#90, avg(fare_per_mile#53)#91, avg(tip_rate#54)#92, avg(is_shared#55)#93, sum(driver_pay#18)#94]
+Results [8]: [pickup_borough#67, pickup_hour#51, count(1)#89L AS trip_count#71L, avg(trip_miles#9)#90 AS avg_miles#72, avg(fare_per_mile#53)#91 AS avg_fare_per_mile#73, avg(tip_rate#54)#92 AS avg_tip_rate#74, avg(is_shared#55)#93 AS shared_trip_rate#75, sum(driver_pay#18)#94 AS total_driver_pay#76]
+
+(19) Exchange
+Input [8]: [pickup_borough#67, pickup_hour#51, trip_count#71L, avg_miles#72, avg_fare_per_mile#73, avg_tip_rate#74, shared_trip_rate#75, total_driver_pay#76]
+Arguments: rangepartitioning(pickup_borough#67 ASC NULLS FIRST, pickup_hour#51 ASC NULLS FIRST, 16), ENSURE_REQUIREMENTS, [plan_id=85]
+
+(20) Sort
+Input [8]: [pickup_borough#67, pickup_hour#51, trip_count#71L, avg_miles#72, avg_fare_per_mile#73, avg_tip_rate#74, shared_trip_rate#75, total_driver_pay#76]
+Arguments: [pickup_borough#67 ASC NULLS FIRST, pickup_hour#51 ASC NULLS FIRST], true, 0
+
+(21) AdaptiveSparkPlan
+Output [8]: [pickup_borough#67, pickup_hour#51, trip_count#71L, avg_miles#72, avg_fare_per_mile#73, avg_tip_rate#74, shared_trip_rate#75, total_driver_pay#76]
+Arguments: isFinalPlan=false
+
+
+
+===== SQL: airport trips by hour =====
+== Physical Plan ==
+AdaptiveSparkPlan (21)
++- Sort (20)
+   +- Exchange (19)
+      +- HashAggregate (18)
+         +- Exchange (17)
+            +- HashAggregate (16)
+               +- Project (15)
+                  +- BroadcastHashJoin LeftOuter BuildRight (14)
+                     :- Project (9)
+                     :  +- BroadcastHashJoin LeftOuter BuildRight (8)
+                     :     :- Project (3)
+                     :     :  +- Filter (2)
+                     :     :     +- Scan parquet  (1)
+                     :     +- BroadcastExchange (7)
+                     :        +- Project (6)
+                     :           +- Filter (5)
+                     :              +- Scan csv  (4)
+                     +- BroadcastExchange (13)
+                        +- Project (12)
+                           +- Filter (11)
+                              +- Scan csv  (10)
+
+
+(1) Scan parquet 
+Output [8]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18]
+Batched: true
+Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/fhvhv_tripdata_2023-01.parquet, ... 2 entries]
+PushedFilters: [IsNotNull(trip_miles), IsNotNull(trip_time), IsNotNull(base_passenger_fare), IsNotNull(tips), IsNotNull(driver_pay), GreaterThan(trip_miles,0.0), GreaterThan(trip_time,0), GreaterThan(base_passenger_fare,0.0), GreaterThanOrEqual(tips,0.0), GreaterThanOrEqual(driver_pay,0.0), IsNotNull(PULocationID), IsNotNull(DOLocationID), IsNotNull(pickup_datetime), LessThan(trip_miles,200.0), LessThan(trip_time,21600), LessThan(base_passenger_fare,1000.0), GreaterThanOrEqual(pickup_datetime,2023-01-01T00:00), LessThan(pickup_datetime,2023-04-01T00:00)]
+ReadSchema: struct<pickup_datetime:timestamp_ntz,PULocationID:bigint,DOLocationID:bigint,trip_miles:double,trip_time:bigint,base_passenger_fare:double,tips:double,driver_pay:double>
+
+(2) Filter
+Input [8]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18]
+Condition : (((((((((((((((((isnotnull(trip_miles#9) AND isnotnull(trip_time#10L)) AND isnotnull(base_passenger_fare#11)) AND isnotnull(tips#17)) AND isnotnull(driver_pay#18)) AND (trip_miles#9 > 0.0)) AND (trip_time#10L > 0)) AND (base_passenger_fare#11 > 0.0)) AND (tips#17 >= 0.0)) AND (driver_pay#18 >= 0.0)) AND isnotnull(PULocationID#7L)) AND isnotnull(DOLocationID#8L)) AND isnotnull(pickup_datetime#5)) AND (trip_miles#9 < 200.0)) AND (trip_time#10L < 21600)) AND (base_passenger_fare#11 < 1000.0)) AND (pickup_datetime#5 >= 2023-01-01 00:00:00)) AND (pickup_datetime#5 < 2023-04-01 00:00:00))
+
+(3) Project
+Output [7]: [cast(PULocationID#7L as int) AS PULocationID#48, cast(DOLocationID#8L as int) AS DOLocationID#49, trip_miles#9, hour(pickup_datetime#5, Some(America/New_York)) AS pickup_hour#51, (cast(trip_time#10L as double) / 60.0) AS trip_minutes#52, (base_passenger_fare#11 / trip_miles#9) AS fare_per_mile#53, (tips#17 / base_passenger_fare#11) AS tip_rate#54]
+Input [8]: [pickup_datetime#5, PULocationID#7L, DOLocationID#8L, trip_miles#9, trip_time#10L, base_passenger_fare#11, tips#17, driver_pay#18]
+
+(4) Scan csv 
+Output [1]: [LocationID#41]
+Batched: false
+Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone_lookup.csv]
+PushedFilters: [IsNotNull(LocationID)]
+ReadSchema: struct<LocationID:int>
+
+(5) Filter
+Input [1]: [LocationID#41]
+Condition : isnotnull(LocationID#41)
+
+(6) Project
+Output [1]: [LocationID#41 AS PULocationID#56]
+Input [1]: [LocationID#41]
+
+(7) BroadcastExchange
+Input [1]: [PULocationID#56]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=140]
+
+(8) BroadcastHashJoin
+Left keys [1]: [PULocationID#48]
+Right keys [1]: [PULocationID#56]
+Join type: LeftOuter
+Join condition: None
+
+(9) Project
+Output [7]: [PULocationID#48, DOLocationID#49, trip_miles#9, pickup_hour#51, trip_minutes#52, fare_per_mile#53, tip_rate#54]
+Input [8]: [PULocationID#48, DOLocationID#49, trip_miles#9, pickup_hour#51, trip_minutes#52, fare_per_mile#53, tip_rate#54, PULocationID#56]
+
+(10) Scan csv 
+Output [1]: [LocationID#61]
+Batched: false
+Location: InMemoryFileIndex [file:/Users/gasto/Documents/week-13-mini-assignment/data/raw/taxi_zone_lookup.csv]
+PushedFilters: [IsNotNull(LocationID)]
+ReadSchema: struct<LocationID:int>
+
+(11) Filter
+Input [1]: [LocationID#61]
+Condition : isnotnull(LocationID#61)
+
+(12) Project
+Output [1]: [LocationID#61 AS DOLocationID#59]
+Input [1]: [LocationID#61]
+
+(13) BroadcastExchange
+Input [1]: [DOLocationID#59]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=144]
+
+(14) BroadcastHashJoin
+Left keys [1]: [DOLocationID#49]
+Right keys [1]: [DOLocationID#59]
+Join type: LeftOuter
+Join condition: None
+
+(15) Project
+Output [6]: [pickup_hour#51, (PULocationID#48 IN (1,132,138) OR DOLocationID#49 IN (1,132,138)) AS is_airport#69, trip_miles#9, trip_minutes#52, fare_per_mile#53, tip_rate#54]
+Input [8]: [PULocationID#48, DOLocationID#49, trip_miles#9, pickup_hour#51, trip_minutes#52, fare_per_mile#53, tip_rate#54, DOLocationID#59]
+
+(16) HashAggregate
+Input [6]: [pickup_hour#51, is_airport#69, trip_miles#9, trip_minutes#52, fare_per_mile#53, tip_rate#54]
+Keys [2]: [pickup_hour#51, is_airport#69]
+Functions [5]: [partial_count(1), partial_avg(fare_per_mile#53), partial_avg(tip_rate#54), partial_avg(trip_miles#9), partial_avg(trip_minutes#52)]
+Aggregate Attributes [9]: [count#139L, sum#140, count#141L, sum#142, count#143L, sum#144, count#145L, sum#146, count#147L]
+Results [11]: [pickup_hour#51, is_airport#69, count#148L, sum#149, count#150L, sum#151, count#152L, sum#153, count#154L, sum#155, count#156L]
+
+(17) Exchange
+Input [11]: [pickup_hour#51, is_airport#69, count#148L, sum#149, count#150L, sum#151, count#152L, sum#153, count#154L, sum#155, count#156L]
+Arguments: hashpartitioning(pickup_hour#51, is_airport#69, 16), ENSURE_REQUIREMENTS, [plan_id=149]
+
+(18) HashAggregate
+Input [11]: [pickup_hour#51, is_airport#69, count#148L, sum#149, count#150L, sum#151, count#152L, sum#153, count#154L, sum#155, count#156L]
+Keys [2]: [pickup_hour#51, is_airport#69]
+Functions [5]: [count(1), avg(fare_per_mile#53), avg(tip_rate#54), avg(trip_miles#9), avg(trip_minutes#52)]
+Aggregate Attributes [5]: [count(1)#114L, avg(fare_per_mile#53)#115, avg(tip_rate#54)#116, avg(trip_miles#9)#117, avg(trip_minutes#52)#118]
+Results [7]: [pickup_hour#51, is_airport#69, count(1)#114L AS trips#109L, round(avg(fare_per_mile#53)#115, 2) AS avg_fare_per_mile#110, round(avg(tip_rate#54)#116, 4) AS avg_tip_rate#111, round(avg(trip_miles#9)#117, 2) AS avg_miles#112, round(avg(trip_minutes#52)#118, 2) AS avg_minutes#113]
+
+(19) Exchange
+Input [7]: [pickup_hour#51, is_airport#69, trips#109L, avg_fare_per_mile#110, avg_tip_rate#111, avg_miles#112, avg_minutes#113]
+Arguments: rangepartitioning(pickup_hour#51 ASC NULLS FIRST, is_airport#69 ASC NULLS FIRST, 16), ENSURE_REQUIREMENTS, [plan_id=152]
+
+(20) Sort
+Input [7]: [pickup_hour#51, is_airport#69, trips#109L, avg_fare_per_mile#110, avg_tip_rate#111, avg_miles#112, avg_minutes#113]
+Arguments: [pickup_hour#51 ASC NULLS FIRST, is_airport#69 ASC NULLS FIRST], true, 0
+
+(21) AdaptiveSparkPlan
+Output [7]: [pickup_hour#51, is_airport#69, trips#109L, avg_fare_per_mile#110, avg_tip_rate#111, avg_miles#112, avg_minutes#113]
+Arguments: isFinalPlan=false
+
+
